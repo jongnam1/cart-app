@@ -17,6 +17,17 @@
 // innerHTML = 해당 태그 안에 새로운 자식요소를 넣을 때 사용함
 // 자식요소는 태그들 문자열에 담아서 사용해도 되지만. 변수를 같이 사용하려면 ``사용해서 하면 개꿀.
 
+const db = localStorage;
+
+const data = db.getItem("List");
+//null = 아무것도 없는 값 // object memory
+// undefined =아무것도 없음
+const newData = JSON.parse(data);
+
+let list = newData ?? []; // ? ?? 앞에 조건이 만족되지 않을 때 안전빵으로 줄 초기값
+console.log(newData);
+console.log(typeof newData);
+
 let list = [];
 
 const rendering = () => {
@@ -82,6 +93,9 @@ form.addEventListener(
 
     // list.push()
     list.unshift(item);
+
+    console.log(list);
+    db.setItem("list", JSON.stringify(list));
 
     rendering();
 
